@@ -10,7 +10,8 @@ namespace Globalechain\Rpc;
 
 use Globalechain\Rpc\Api\ApiProviderInterface;
 use Globalechain\Rpc\Exception\RpcException;
-use Zend\Json\Server\Server;
+use Globalechain\Rpc\Vendor\Audit\JsonRpcAuditer;
+use ReflectionMethod;
 use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\ServiceManager\ServiceManager;
 
@@ -54,13 +55,13 @@ class Application
     }
 
     public function getService()
-    {
+    {   // Create JsonRpc server
         if (is_null($this->server)) {
-            // Create JsonRpc server
-            $this->server = new Server();
-//            $this->server = 
-            $auditer = new Vendor\Audit\JsonRpcAuditer($this->serviceManager,true);
-            
+            // 1.System server
+            // $this->server = new Server();
+            // 2.Add access record
+            $auditer = new JsonRpcAuditer($this->serviceManager, true);
+            $this->server = new JsonRpcServer($auditer);
         }
         return $this->server;
     }
@@ -92,7 +93,7 @@ class Application
             throw new RpcException('API method for RPC service does not exist');
         }
 
-        $reflection = new \ReflectionMethod($apiClass, $applicationParameter->getMethod());
+        $reflection = new ReflectionMethod($apiClass, $applicationParameter->getMethod());
         $numberOfRequiredParameters = $reflection->getNumberOfRequiredParameters();   //Access method must have a number of parameters
         $requestParamsNargs = $this->server->getRequest()->getParams() ? count($this->server->getRequest()->getParams()) : 0;  //Number of request method parameters
         if ($numberOfRequiredParameters > $requestParamsNargs) {
