@@ -58,6 +58,9 @@ class Application
         if (is_null($this->server)) {
             // Create JsonRpc server
             $this->server = new Server();
+//            $this->server = 
+            $auditer = new Vendor\Audit\JsonRpcAuditer($this->serviceManager,true);
+            
         }
         return $this->server;
     }
