@@ -24,10 +24,15 @@ class ComposerStaticInit8a7be344ab4fd32aae96c892baacfb3f
         array (
             'Webmozart\\Assert\\' => 17,
         ),
+        'T' => 
+        array (
+            'Test\\' => 5,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\Yaml\\' => 23,
+            'Service\\' => 8,
         ),
         'P' => 
         array (
@@ -60,6 +65,10 @@ class ComposerStaticInit8a7be344ab4fd32aae96c892baacfb3f
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
+        'Test\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/test',
+        ),
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
@@ -67,6 +76,10 @@ class ComposerStaticInit8a7be344ab4fd32aae96c892baacfb3f
         'Symfony\\Component\\Yaml\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
+        ),
+        'Service\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/service',
         ),
         'Psr\\Log\\' => 
         array (
