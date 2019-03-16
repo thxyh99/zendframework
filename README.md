@@ -1,3 +1,1 @@
-# zendframework
-
 ### Primary email address.
